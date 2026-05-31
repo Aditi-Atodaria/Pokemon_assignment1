@@ -9,7 +9,7 @@
 @font-face {
   font-family: 'Nunito';
   src: url('./fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;   /* covers all weights via variable font */
+  font-weight: 100 900;  
   font-style: normal;
   font-display: swap;
 }
@@ -42,7 +42,7 @@ body {
   flex-shrink: 0;
 }
 
-/* LEFT yellow panel */
+
 .left-panel {
   width: 52%;
   height: 100%;
@@ -54,7 +54,6 @@ body {
   z-index: 2;
 }
 
-/* Pokeball watermark bottom-left */
 .pokeball-watermark {
   position: absolute;
   bottom: -80px;
@@ -65,7 +64,7 @@ body {
   opacity: 0.1;
 }
 
-/* Logo top-left */
+
 .logo {
   position: absolute;
   top: 36px;
@@ -74,7 +73,7 @@ body {
 }
 .logo img { width: 100%; }
 
-/* Eyebrow label */
+
 .eyebrow {
   font-family: 'Nunito', sans-serif;
   font-size: 12px;
@@ -87,7 +86,7 @@ body {
   left: 70px;
 }
 
-/* Big title */
+
 .title {
   font-family: 'Black Han Sans', sans-serif;
   font-size: clamp(72px, 8vw, 108px);
@@ -99,7 +98,7 @@ body {
   left: 70px;
 }
 
-/* Description */
+
 .description {
   font-size: 15px;
   line-height: 1.65;
@@ -111,7 +110,7 @@ body {
   left: 70px;
 }
 
-/* Counter */
+
 .counter {
   position: absolute;
   top: 500px;
@@ -130,7 +129,7 @@ body {
   margin-right: 16px;
 }
 
-/* RIGHT cream panel */
+
 .right-panel {
   width: 48%;
   height: 100%;
@@ -140,7 +139,7 @@ body {
   right: 0;
 }
 
-/* Hamburger top-right (on right panel) */
+
 .hamburger {
   position: absolute;
   top: 36px;
@@ -160,7 +159,7 @@ body {
   margin-bottom: 0;
 }
 
-/* Pikachu image */
+
 .pikachu-wrap {
   position: absolute;
   left: -200px;
@@ -181,7 +180,7 @@ body {
   50%       { transform: translateY(-52%); }
 }
 
-/* Pagination dots */
+
 .dots {
   position: absolute;
   right: 30px;

@@ -219,7 +219,7 @@ body {
   animation: slideUp 0.9s 0.3s both, float 3s 1.2s ease-in-out infinite;
 }
 
-/* ===== SCROLL BEHAVIOR ===== */
+/*SCROLL*/
 html, body {
   height: 100%;
   overflow-y: scroll;
@@ -231,7 +231,7 @@ html, body {
   scroll-snap-stop: always;
 }
 
-  /* ===== EEVEE SLIDE ===== */
+  /* EEVEE*/
 .page-eevee {
   width: 100vw;
   height: 100vh;
@@ -390,7 +390,7 @@ html, body {
 }
 
 
-  /* ===== MEW SLIDE ===== */
+  /* MEW */
   .page-mew {
   width: 100vw;
   height: 100vh;

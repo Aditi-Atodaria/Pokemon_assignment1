@@ -1,0 +1,550 @@
+@font-face {
+  font-family: 'Black Han Sans';
+  src: url('./fonts/Black_Han_Sans/BlackHanSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('./fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;   /* covers all weights via variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('./fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #f5edd6;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  flex-shrink: 0;
+}
+
+/* LEFT yellow panel */
+.left-panel {
+  width: 52%;
+  height: 100%;
+  background: #FFC800;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 60px 60px 60px 70px;
+  z-index: 2;
+}
+
+/* Pokeball watermark bottom-left */
+.pokeball-watermark {
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+/* Logo top-left */
+.logo {
+  position: absolute;
+  top: 36px;
+  left: 52px;
+  width: 160px;
+}
+.logo img { width: 100%; }
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: rgba(0,0,0,0.55);
+  text-transform: uppercase;
+  position: absolute;
+  top: 200px;
+  left: 70px;
+}
+
+/* Big title */
+.title {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: clamp(72px, 8vw, 108px);
+  line-height: 1;
+  color: #111;
+  letter-spacing: -1px;
+  position: absolute;
+  top: 230px;
+  left: 70px;
+}
+
+/* Description */
+.description {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #222;
+  max-width: 360px;
+  font-weight: 600;
+  position: absolute;
+  top: 370px;
+  left: 70px;
+}
+
+/* Counter */
+.counter {
+  position: absolute;
+  top: 500px;
+  left: 70px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 0.05em;
+}
+.counter-line {
+  width: 40px;
+  height: 2px;
+  background: #111;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+/* RIGHT cream panel */
+.right-panel {
+  width: 48%;
+  height: 100%;
+  background: #f5edd6;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Hamburger top-right (on right panel) */
+.hamburger {
+  position: absolute;
+  top: 36px;
+  right: 48px;
+  cursor: pointer;
+  z-index: 10;
+}
+.hamburger span {
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: #222;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.hamburger span:last-child {
+  margin-bottom: 0;
+}
+
+/* Pikachu image */
+.pikachu-wrap {
+  position: absolute;
+  left: -200px;
+  top: 50%;
+  transform: translateY(-48%);
+  width: 700px;
+  pointer-events: none;
+  z-index: 5;
+  animation: float 3s ease-in-out infinite;
+}
+.pikachu-wrap img {
+  width: 100%;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.12));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(-48%); }
+  50%       { transform: translateY(-52%); }
+}
+
+/* Pagination dots */
+.dots {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 10px;
+}
+.dot:last-child {
+  margin-bottom: 0;
+}
+.dot.active {
+  background: #111;
+  transform: scale(1.2);
+}
+
+/* Slide-in animation on load */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.eyebrow     { animation: slideUp 0.6s 0.1s  both; }
+.title       { animation: slideUp 0.7s 0.25s both; }
+.description { animation: slideUp 0.7s 0.4s  both; }
+.counter     { animation: slideUp 0.7s 0.55s both; }
+.pikachu-wrap {
+  animation: slideUp 0.9s 0.3s both, float 3s 1.2s ease-in-out infinite;
+}
+
+/* ===== SCROLL BEHAVIOR ===== */
+html, body {
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.page {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+  /* ===== EEVEE SLIDE ===== */
+.page-eevee {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.eevee-left {
+  width: 52%;
+  height: 100%;
+  background: #633C16;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 60px 60px 60px 70px;
+  z-index: 2;
+}
+
+.eevee-pokeball-watermark {
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+.eevee-logo {
+  position: absolute;
+  top: 36px;
+  left: 52px;
+  width: 160px;
+}
+.eevee-logo img { width: 100%; }
+
+.eevee-eyebrow {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  position: absolute;
+  top: 200px;
+  left: 70px;
+}
+
+.eevee-title {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: clamp(72px, 8vw, 108px);
+  line-height: 1;
+  color: #EFDBB5;
+  letter-spacing: -1px;
+  position: absolute;
+  top: 230px;
+  left: 70px;
+}
+
+.eevee-description {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(239,219,181,0.85);
+  max-width: 360px;
+  font-weight: 600;
+  position: absolute;
+  top: 370px;
+  left: 70px;
+}
+
+.eevee-counter {
+  position: absolute;
+  top: 500px;
+  left: 70px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #EFDBB5;
+  letter-spacing: 0.05em;
+}
+.eevee-counter-line {
+  width: 40px;
+  height: 2px;
+  background: #EFDBB5;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.eevee-right {
+  width: 48%;
+  height: 100%;
+  background: #EFDBB5;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.eevee-wrap {
+  position: absolute;
+  left: -180px;
+  top: 50%;
+  transform: translateY(-48%);
+  width: 640px;
+  pointer-events: none;
+  z-index: 5;
+  animation: float 3s ease-in-out infinite;
+}
+.eevee-wrap img {
+  width: 100%;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.18));
+}
+
+.eevee-hamburger {
+  position: absolute;
+  top: 36px;
+  right: 48px;
+  cursor: pointer;
+  z-index: 10;
+}
+.eevee-hamburger span {
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: #633C16;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.eevee-hamburger span:last-child {
+  margin-bottom: 0;
+}
+
+.eevee-dots {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.eevee-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(99,60,22,0.2);
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 10px;
+}
+.eevee-dot:last-child {
+  margin-bottom: 0;
+}
+.eevee-dot.active {
+  background: #633C16;
+  transform: scale(1.2);
+}
+
+
+  /* ===== MEW SLIDE ===== */
+  .page-mew {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.mew-left {
+  width: 52%;
+  height: 100%;
+  background: #976E80;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 60px 60px 60px 70px;
+  z-index: 2;
+}
+
+.mew-pokeball-watermark {
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.mew-logo {
+  position: absolute;
+  top: 36px;
+  left: 52px;
+  width: 160px;
+}
+.mew-logo img { width: 100%; }
+
+.mew-eyebrow {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  position: absolute;
+  top: 200px;
+  left: 70px;
+}
+
+.mew-title {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: clamp(72px, 8vw, 108px);
+  line-height: 1;
+  color: #EEC4CE;
+  letter-spacing: -1px;
+  position: absolute;
+  top: 235px;
+  left: 70px;
+}
+
+.mew-description {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(238,196,206,0.9);
+  max-width: 360px;
+  font-weight: 600;
+  position: absolute;
+  top: 370px;
+  left: 70px;
+}
+
+.mew-counter {
+  position: absolute;
+  top: 500px;
+  left: 70px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #EEC4CE;
+  letter-spacing: 0.05em;
+}
+.mew-counter-line {
+  width: 40px;
+  height: 2px;
+  background: #EEC4CE;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.mew-right {
+  width: 48%;
+  height: 100%;
+  background: #EEC4CE;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.mew-wrap {
+  position: absolute;
+  left: -160px;
+  top: 50%;
+  transform: translateY(-48%);
+  width: 620px;
+  pointer-events: none;
+  z-index: 5;
+  animation: float 3s ease-in-out infinite;
+}
+.mew-wrap img {
+  width: 100%;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+}
+
+.mew-hamburger {
+  position: absolute;
+  top: 36px;
+  right: 48px;
+  cursor: pointer;
+  z-index: 10;
+}
+.mew-hamburger span {
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: #976E80;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.mew-hamburger span:last-child {
+  margin-bottom: 0;
+}
+
+.mew-dots {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.mew-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(151,110,128,0.25);
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 10px;
+}
+.mew-dot:last-child {
+  margin-bottom: 0;
+}
+.mew-dot.active {
+  background: #976E80;
+  transform: scale(1.2);
+}
+
